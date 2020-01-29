@@ -7,6 +7,7 @@ import PostUpvoter from './PostUpvoter'
 export const ALL_POSTS_QUERY = gql`
   query allPosts($first: Int!, $skip: Int!) {
     allPosts(orderBy: createdAt_DESC, first: $first, skip: $skip) {
+      thisProduceAnError
       id
       title
       votes
@@ -34,6 +35,7 @@ export default function PostList() {
       notifyOnNetworkStatusChange: true,
     }
   )
+  console.log({ loading, error, data, fetchMore, networkStatus } )
 
   const loadingMorePosts = networkStatus === NetworkStatus.fetchMore
 
